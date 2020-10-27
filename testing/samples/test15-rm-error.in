@@ -1,0 +1,7 @@
+# Check error message for removal of unstaged, untracked file.
+> init
+<<<
++ f.txt wug.txt
+> rm f.txt
+No reason to remove the file.
+<<<

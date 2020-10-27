@@ -1,0 +1,31 @@
+# Remove a tracked file and check status.
+> init
+<<<
++ yay.txt yay.txt
++ g.txt notwug.txt
+> add g.txt
+<<<
+> add yay.txt
+<<<
+> commit "Two files"
+<<<
+> rm yay.txt
+<<<
+* yay.txt
+> status
+=== Branches ===
+*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+yay.txt
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<
++ yay.txt wug.txt
+> status
+<<<

@@ -1,0 +1,6 @@
+# Check that adding nonexistent file gets correct error.
+> init
+<<<
+> add f.txt
+File does not exist.
+<<<

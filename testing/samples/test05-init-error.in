@@ -1,0 +1,5 @@
+# Attempt to init in initialized directory
+I test01-init.in
+> init
+A gitlet version-control system already exists in the current directory.
+<<<

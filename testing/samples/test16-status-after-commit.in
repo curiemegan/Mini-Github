@@ -1,0 +1,10 @@
+# Check that commit clears the staging area.
+I setup.inc
+> commit "files"
+<<<
+I blank-status.inc
+> rm wug.txt
+<<<
+> commit "Removed wug.txt"
+<<<
+I blank-status.inc

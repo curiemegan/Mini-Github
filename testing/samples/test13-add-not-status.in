@@ -1,0 +1,7 @@
+# Check that adding a tracked, unchanged file has no effect.
+I setup1.inc
+> commit "files"
+<<<
+> add f.txt
+<<<
+I blank-status.inc

@@ -1,0 +1,42 @@
+# Various error cases for reset
+# Check reset command.
+I setup2.inc
+> branch other
+<<<
++ h.txt wug2.txt
+> add h.txt
+<<<
+> rm g.txt
+<<<
+> commit "Add h.txt and remove g.txt"
+<<<
+> log
+===
+${HEADER}
+${DATE}
+Add h.txt and remove g.txt
+
+===
+${HEADER}
+${DATE}
+Two files
+
+===
+${HEADER}
+${DATE}
+initial commit
+<<<*
+D UID3 "${3}"
+D UID2 "${2}"
+D UID1 "${1}"
+
+> checkout other
+<<<
+# Almost certain not to exist.
+> reset 025052f2b193d417df998517a4c539918801b430
+No commit with that id exists.
+<<<
++ h.txt wug3.txt
+> reset ${UID1}
+There is an untracked file in the way; delete it, or add and commit it first.
+<<<

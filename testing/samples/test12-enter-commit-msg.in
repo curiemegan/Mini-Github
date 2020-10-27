@@ -1,0 +1,9 @@
+# Commit message with blank message
+> init
+<<<
++ f.txt wug.txt
+> add f.txt
+<<<
+>commit ""
+Please enter a commit message.
+<<<

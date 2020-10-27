@@ -1,0 +1,5 @@
+D UID "[a-f0-9]+"
+D HEADER "commit (${UID})"
+D DATE "Date: \w\w\w \w\w\w \d+ \d\d:\d\d:\d\d \d\d\d\d [-+]\d\d\d\d"
+D ARBLINE "[^\n]*(?=\n|\Z)"
+D ARBLINES "(?:(?:.|\n)*(?:\n|\Z)|\A|\Z)"
