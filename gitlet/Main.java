@@ -87,23 +87,9 @@ public class Main {
                 validateNumArgs("branch", args, 2);
                 branch(args[1]);
                 break;
-            case "rm-branch":
-                validateNumArgs("rm-branch", args, 2);
-                rmBranch(args[1]);
-
-                break;
-            case "reset":
-                validateNumArgs("reset", args, 2);
-                reset(args[1]);
-
-                break;
             case "merge":
                 validateNumArgs("merge", args, 2);
                 merge(args[1]);
-                break;
-            case "rebase":
-                validateNumArgs("rebase", args, 2);
-
                 break;
             case "add-remote":
                 validateNumArgs("add-remote", args, 3);
@@ -112,18 +98,6 @@ public class Main {
             case "rm-remote":
                 validateNumArgs("rm-remote", args, 2);
                 rmremote(args[1]);
-                break;
-            case "push":
-                validateNumArgs("push", args, 3);
-
-                break;
-            case "fetch":
-                validateNumArgs("fetch", args, 3);
-
-                break;
-            case "pull":
-                validateNumArgs("pull", args, 3);
-
                 break;
             default:
                 exitWithError("No command with that name exists.");
@@ -198,19 +172,6 @@ public class Main {
         }
 
     }
-
-    public static void addremote(String remotename, String directoryname) throws IOException {
-
-    }
-
-    public static void rmremote(String remotename) {
-
-    }
-
-    public static void push(String remotename, String remotebranchname) {
-
-    }
-
 
     public static void commit(String msg, Commit mergep) throws IOException {
         MetaData currMetaData = Utils.readObject(METADATA, MetaData.class);
@@ -608,6 +569,7 @@ public class Main {
         Stage currstage = currmetadata.getStage();
         HashMap<String, String> stageadd = currstage.getStageAdd();
         HashMap<String, String> stageremove = currstage.getStageRemove();
+        
         if (!stageadd.isEmpty() || !stageremove.isEmpty()) {
             System.out.println("You have uncommitted changes.");
             return;
@@ -620,6 +582,7 @@ public class Main {
             System.out.println("Cannot merge a branch with itself.");
             return;
         }
+        
         String id = branches.get(branchName);
         Commit givencommit = currmetadata.getAllcommits().get(id);
         Commit currcommit = currmetadata.getHead();
@@ -632,17 +595,14 @@ public class Main {
                 splitpoint = splitpoints.get(min);
             }
         }
+        
         HashMap<String, String> givenblobs = givencommit.getBlobs();
         HashMap<String, String> currblobs = currcommit.getBlobs();
         HashMap<String, String> splitblobs = splitpoint.getBlobs();
         Map<String, String> currblobswapped = swapper(currblobs);
         Map<String, String> givenblobswapped = swapper(givenblobs);
         Map<String, String> splitblobswapped = swapper(splitblobs);
-
-        /*System.out.println(currblobswapped);
-        System.out.println(givenblobswapped);
-        System.out.println(splitblobswapped);
-*/
+        
         for (String k : givenblobswapped.keySet()){
             File a = new File("./" + k);
             if ((!currblobswapped.containsKey(k) && givenblobswapped.containsKey(k)) && a.exists()){
@@ -731,11 +691,6 @@ public class Main {
         if (conflict) {
             System.out.println("Encountered a merge conflict.");
         }
-        /*List<String> workingDirectoryFiles = Utils.plainFilenamesIn("./");
-        for (String filename : workingDirectoryFiles) {
-            File t = new File("./" + filename);
-            System.out.println(Utils.readContentsAsString(t));
-        }*/
     }
 
     public static void findSplitPoint(Commit curr, Commit branch, int step) {
@@ -756,10 +711,6 @@ public class Main {
                 findSplitPoint(curr, branch.getMergeparent(), step+1);
             }
         }
-    }
-
-    public static void rebase(String branchName){
-
     }
 
     public static void exitWithError(String message){
