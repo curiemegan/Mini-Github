@@ -27,7 +27,7 @@ public class UnitTest {
         Main.main("init");
         File toAdd = new File("./toAdd.txt");
         toAdd.createNewFile();
-        Utils.writeContents(toAdd, "i want to drop this class ;(");
+        Utils.writeContents(toAdd, "Hi, I am Curie");
         String[] args = new String[]{"add", "toAdd.txt"};
         Main.main(args);
         Stage currStage = Utils.readObject(Main.STAGE, Stage.class);
